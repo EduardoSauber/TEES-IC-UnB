@@ -2,6 +2,14 @@ import unicodedata
 import textwrap
 from collections import Counter
 
+# Trabalho em grupo
+#
+# Formar um banco de dados com diversos textos (66 textos por grupo)
+# Analisar a probabilidade de letras que apareceram nos textos
+# Juntar esses dados (cerca de 660 textos no total) para formar uma tabela de probabilidade
+#
+# Util para a analise criptografica de textos, em especial na lingua portuguesa.
+
 def calcFrequencia(texto):
     # normaliza o texto
     texto_desmontado = unicodedata.normalize('NFD',texto)
