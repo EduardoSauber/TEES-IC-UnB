@@ -1,6 +1,8 @@
 import unicodedata
 import textwrap
+import os
 from collections import Counter
+
 
 # Trabalho em grupo
 #
@@ -47,15 +49,31 @@ def calcFrequencia(texto):
     tipoTexto = input("Qual tipo de texto? (ILT - ILL - CLS - CLL - LMR - LMJ - LMC - LEP - LER - DPA - DPB)\n")
     nmrMembro = input("Qual seu numero de membro?\n")
 
-    titulo = nomeGrupo + "_" + lingua + "_" + nmrMembro + "_" + tipoTexto
+    titulo = nomeGrupo + "_" + lingua + "_" + nmrMembro + "_" + tipoTexto + ".txt"
+    titulo2 = nomeGrupo + "_" + lingua + "_" + nmrMembro + "_" + tipoTexto + "BRUTO.txt"
 
-    with open(titulo, "w", encoding="utf-8") as arquivo:
+    # Diretorio de output (vai ser na mesma pasta do arquivo .py
+    caminhoOutput = "Output"
+    if not os.path.exists(caminhoOutput):
+        os.makedirs(caminhoOutput)
+
+    # Formatado
+    with open(os.path.join(caminhoOutput,titulo), "w", encoding="utf-8") as arquivo:
         arquivo.write(textoFormatado)
+    # Dados
+    with open(os.path.join(caminhoOutput,titulo2),"w", encoding="utf-8") as arquivo2:
+        arquivo2.write(textoSemAcentos + "\n\n")
+        arquivo2.write(f"total de letras: {totalLetras}\n")
+        arquivo2.write("Letra - Frequencia - Probabilidade\n")
+        for let, qtd in contagem.most_common():
+            prob = qtd/totalLetras
+            arquivo2.write((f"{let} {qtd} {prob:.3f}") + "\n")
 
     print("Texto salvo na mesma pasta do codigo.")
 
     ####################################################################################################################
     # print dos resultados
+    '''
     print(textoFormatado)
 
     print(f"Total de letras: {totalLetras}")
@@ -67,6 +85,7 @@ def calcFrequencia(texto):
 
         # o "^4" centraliza o texto no centro
         print(f"{letra} {quantidade: ^4} {probabilidade:.3f}%")
+    '''
 
 
 def workspace():
