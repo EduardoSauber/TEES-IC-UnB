@@ -1,0 +1,120 @@
+Todo programador tem uma historia sobre como
+aprendeu a escrever seu primeiro programa Comecei a
+aprender ainda crianca quando meu pai trabalhava para
+a Digital Equipment Corporation uma das empresas
+pioneiras da era moderna da computacao Escrevi meu
+primeiro programa em um kit de computador que meu
+pai havia montado em nosso porao O computador nao
+tinha nada alem de uma placamae basica conectada a
+um teclado sem gabinete e o monitor era apenas um
+tubo de raios catodicos Meu primeiro programa foi um
+jogo simples de adivinhacao de numeros que tinha um
+aspecto semelhante a
+Im thinking of a number Try to guess the number Im thinking of
+Too low Guess again
+Too high Guess again
+Thats it Would you like to play again yesno no
+Thanks for playing
+Sempre vou me lembrar de como eu ficava satisfeito ao ver minha familia
+brincar com um jogo que eu havia criado e que funcionava conforme havia
+planejado
+Essa experiencia inicial teve um impacto duradouro Ha uma verdadeira
+satisfacao em criar algo com um proposito algo que resolva um problema
+O software que escrevo hoje em dia atende a uma necessidade mais
+significativa se comparado aos meus esforcos da infancia mas o senso de satisfacao proveniente da criacao de um programa que funciona ainda e de
+modo geral o mesmo
+A quem este livro se destina
+O objetivo deste livro e deixalo pronto para usar Python o mais rapido
+possivel de modo que voce possa criar programas que funcionem  jogos
+visualizacoes de dados e aplicacoes web  ao mesmo tempo que
+desenvolve uma base em programacao que tera muita utilidade pelo resto
+de sua vida Curso intensivo de Python foi escrito para pessoas de qualquer
+idade que jamais programaram em Python antes ou que nunca programaram
+Se quiser conhecer o basico sobre programacao rapidamente para poder se
+concentrar em projetos interessantes e quiser testar sua compreensao acerca
+de novos conceitos resolvendo problemas significativos este livro e ideal
+para voce Curso intensivo de Python tambem e perfeito para professores de
+Ensino Fundamental e Medio que queiram oferecer uma introducao a
+programacao baseada em projetos aos seus alunos
+O que voce pode esperar do livro
+O proposito deste livro e fazer de voce um bom programador em geral e
+um bom programador de Python em particular Voce aprendera de modo
+eficiente e adotara bons habitos a medida que eu lhe proporcionar uma base
+solida em conceitos gerais de programacao Apos trabalhar com o Curso
+Intensivo de Python voce devera estar pronto para passar para tecnicas
+mais avancadas de Python e sera mais facil ainda dominar sua proxima
+linguagem de programacao
+Na primeira parte deste livro voce conhecera os conceitos basicos de
+programacao necessarios para saber escrever programas Python Esses
+conceitos sao os mesmos que voce aprenderia ao comecar com
+praticamente qualquer linguagem de programacao Voce conhecera os
+diferentes tipos de dados e as maneiras de armazenalos em listas e em
+dicionarios em seus programas Aprendera a criar colecoes de dados e a
+trabalhar com essas colecoes de modo eficiente Conhecera os lacos while e
+if para testar determinadas condicoes a fim de poder executar secoes
+especificas de codigo enquanto essas condicoes forem verdadeiras e
+executar outras secoes quando nao forem  uma tecnica que ajuda bastante a
+automatizar processos
+Voce aprendera a aceitar entradas de usuarios para deixar seus programas
+interativos e mantelos executando enquanto o usuario estiver ativo
+Explorara o modo de escrever funcoes para deixar partes de seu programa
+reutilizaveis dessa forma sera necessario escrever blocos de codigo que
+executem determinadas acoes apenas uma vez e podera usalos quantas
+vezes quiser Entao voce estendera esse conceito para comportamentos mais
+complicados usando classes criando programas bem simples que
+respondam a uma variedade de situacoes Alem disso aprendera a escrever
+programas que tratam erros comuns com elegancia Depois de trabalhar
+com cada um desses conceitos basicos voce escrevera alguns programas
+pequenos que resolverao problemas bem definidos Por fim voce dara seu
+primeiro passo em direcao a programacao de nivel intermediario
+aprendendo a escrever testes para seu codigo de modo a poder desenvolver
+mais os seus programas sem se preocupar com a introducao de bugs Todas
+as informacoes da Parte I prepararao voce para assumir projetos maiores e
+mais complexos
+Na Parte II voce aplicara o que aprendeu na Parte I em tres projetos
+Voce pode desenvolver todos os projetos ou qualquer um deles na ordem
+que lhe for mais apropriada No primeiro projeto Capitulos a voce
+criara um jogo de tiros chamado Alien Invasion no estilo do Space
+Invaders constituido de niveis com dificuldade crescente Apos concluir
+esse projeto voce devera estar bem encaminhado para desenvolver seus
+proprios projetos D
+O segundo projeto Capitulos a apresenta a visualizacao de dados
+a voce Os cientistas de dados procuram compreender a enorme quantidade
+de informacoes disponiveis a eles por meio de varias tecnicas de
+visualizacao Voce trabalhara com conjuntos de dados gerados por meio de
+codigo conjuntos de dados baixados de fontes online e conjuntos de dados
+baixados automaticamente pelos seus programas Depois de concluir esse
+projeto voce sera capaz de escrever programas que filtrem conjuntos
+grandes de dados e criem representacoes visuais dessas informacoes
+armazenadas
+No terceiro projeto Capitulos a voce criara uma pequena
+aplicacao web chamada Learning Log Esse projeto permite manter um
+diario com ideias e conceitos que voce aprendeu sobre um assunto especifico Voce sera capaz de manter registros separados para assuntos
+diferentes e permitira que outras pessoas criem uma conta e comecem a
+escrever seus proprios diarios Aprendera tambem a implantar seu projeto
+para que qualquer pessoa possa acessalo online de qualquer lugar
+Por que Python
+Todos os anos eu avalio se devo continuar usando Python ou se devo mudar
+para uma linguagem diferente  talvez uma que seja mais nova no mundo da
+programacao Porem continuo focando em Python por diversos motivos
+Python e uma linguagem extremamente eficiente seus programas farao mais
+com menos linhas de codigo se comparados ao que muitas outras
+linguagens exigiriam A sintaxe de Python tambem ajudara voce a escrever
+um codigo limpo Seu codigo sera facil de ler facil de depurar facil de
+estender e de expandir quando comparado com outras linguagens
+As pessoas usam Python para muitos propositos criar jogos construir
+aplicacoes web resolver problemas de negocios e desenvolver ferramentas
+internas em todo tipo de empresas interessantes Python tambem e
+intensamente usada em areas cientificas para pesquisa academica e
+trabalhos aplicados
+Um dos principais motivos pelos quais continuo a usar Python e por causa
+de sua comunidade que inclui um grupo de pessoas incrivelmente
+diversificado e acolhedor A comunidade e essencial aos programadores
+pois a programacao nao e um objetivo a ser perseguido de forma solitaria
+A maioria de nos mesmo os programadores mais experientes precisa pedir
+conselhos a outras pessoas que ja tenham resolvido problemas semelhantes
+Ter uma comunidade bem conectada que ofereca bastante suporte e
+fundamental para ajudar voce a resolver problemas e a comunidade Python
+apoia totalmente pessoas como voce que estao aprendendo Python como a
+primeira linguagem de programacao
+Python e uma otima linguagem para aprender portanto vamos comecar

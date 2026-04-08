@@ -1,0 +1,268 @@
+Armazenando varias classes em um modulo
+Voce pode armazenar tantas classes quantas forem necessarias em um
+unico modulo, embora cada classe em um modulo deva estar, de algum
+modo, relacionada com outra classe. Ambas as classes, Battery e
+ElectricCar, ajudam a representar carros, portanto vamos acrescenta-las
+ao modulo car.py: car.py \"\"\"Um conjunto de classes usado para
+representar carros a gasolina e eletricos.\"\"\"
+class Car(): --trecho omitido--
+class Battery(): \"\"\"Uma tentativa simples de modelar uma bateria para um
+carro eletrico.\"\"\"
+def _init_(self, battery_size=60): \"\"\"Inicializa os atributos da
+bateria.\"\"\"
+self.battery_size = battery_size
+def describe_battery(self): \"\"\"Exibe uma frase que descreve a
+capacidade da bateria.\"\"\"
+print(\"This car has a \" + str(self.battery_size) + \"-kWh battery.\")
+def get_range(self): \"\"\"Exibe frase sobre a distancia que o carro pode
+percorrer com essa bateria.\"\"\"
+if self.battery_size == 70: range = 240
+elif self.battery_size == 85: range = 270
+message = \"This car can go approximately \" + str(range) message += \"
+miles on a full charge.\"
+print(message)
+class ElectricCar(Car): \"\"\"Modela aspectos de um carro especificos de
+veiculos eletricos.\"\"\"
+def _init_(self, make, model, year): \"\"\"
+Inicializa os atributos da classe-pai.
+Em seguida, inicializa os atributos especificos de um carro eletrico.
+\"\"\"
+super()._init_(make, model, year) self.battery = Battery() Agora
+podemos criar um novo arquivo chamado my_electric_car.py, importar a
+classe ElectricCar e criar um carro eletrico: my_electric_car.py from car
+import ElectricCar
+my_tesla = ElectricCar(\'tesla\', \'model s\', 2016)
+220
+print(my_tesla.get_descriptive_name())
+my_tesla.battery.describe_battery() my_tesla.battery.get_range() Esse
+codigo gera a mesma saida que vimos antes, embora a maior parte da logica
+esteja oculta em um modulo: 2016 Tesla Model S
+This car has a 70-kWh battery.
+This car can go approximately 240 miles on a full charge.
+Importando varias classes de um modulo
+Podemos importar quantas classes forem necessarias em um arquivo de
+programa. Se quisermos criar um carro comum e um carro eletrico no
+mesmo arquivo, precisaremos importar tanto a classe Car quanto a classe
+ElectricCar: my_cars.py u from car import Car, ElectricCar
+v my_beetle = Car(\'volkswagen\', \'beetle\', 2016)
+print(my_beetle.get_descriptive_name())
+w my_tesla = ElectricCar(\'tesla\', \'roadster\', 2016)
+print(my_tesla.get_descriptive_name()) Importe varias classes de um modulo
+separando cada classe com uma virgula u. Depois que importar as classes de
+que precisara, voce podera criar quantas instancias de cada classe quantas
+forem necessarias.
+Nesse exemplo, criamos um Volkswagen Beetle comum em v e um
+Tesla Roadster eletrico em w: 2016 Volkswagen Beetle 2016 Tesla
+Roadster
+Importando um modulo completo
+Tambem podemos importar um modulo completo e entao acessar as
+classes necessarias usando a notacao de ponto. Essa abordagem e
+simples e resulta em um codigo facil de ler. Como toda chamada que
+cria uma instancia de uma classe inclui o nome do modulo, voce nao
+tera conflito de nomes com qualquer nome usado no arquivo atual.
+Eis a aparencia do codigo para importar o modulo car inteiro e entao
+criar um carro comum e um carro eletrico: my_cars.py u import car
+v my_beetle = car.Car(\'volkswagen\', \'beetle\', 2016)
+print(my_beetle.get_descriptive_name())
+w my_tesla = car.ElectricCar(\'tesla\', \'roadster\', 2016)
+print(my_tesla.get_descriptive_name()) Em u importamos o modulo car
+inteiro. Entao acessamos as classes necessarias por meio da sintaxe
+nome_do_modulo.nome_da_classe. Em v criamos novamente um Volkswagen Beetle e
+em w, um Tesla Roadster.
+Importando todas as classes de um modulo
+221
+Voce pode importar todas as classes de um modulo usando a sintaxe a
+seguir: from nome_do_modulo import *
+Esse metodo nao e recomendado por dois motivos. Em primeiro lugar,
+e conveniente ser capaz de ler as instrucoes import no inicio de um
+arquivo e ter uma nocao clara de quais classes um programa utiliza.
+Com essa abordagem, nao fica claro quais sao as classes do modulo que
+voce esta usando. Essa abordagem tambem pode resultar em confusao
+com nomes presentes no arquivo. Se voce acidentalmente importar uma
+classe com o mesmo nome que outro item em seu arquivo de programa,
+podera gerar erros dificeis de serem diagnosticados. Estou mostrando
+essa opcao aqui porque, embora nao seja uma abordagem
+recomendada, e provavel que voce va ve-la no codigo de outras pessoas.
+Se precisar importar muitas classes de um modulo, e melhor importar
+o modulo todo e usar a sintaxe nome_do_modulo.nome_da_classe. Voce nao
+vera todas as classes usadas no inicio do arquivo, mas vera claramente
+em que lugares o modulo e utilizado no programa. Possiveis conflitos de
+nomes que possam ocorrer ao importar todas as classes de um modulo
+tambem serao evitados.
+Importando um modulo em um modulo
+As vezes, voce vai querer espalhar suas classes em varios modulos para
+impedir que um arquivo cresca demais e evitar a armazenagem de classes
+nao relacionadas no mesmo modulo. Ao armazenar suas classes em
+varios modulos, voce podera descobrir que uma classe em um modulo
+depende de uma classe que esta em outro modulo. Se isso acontecer,
+importe a classe necessaria no primeiro modulo.
+Por exemplo, vamos armazenar a classe Car em um modulo e as classes
+ElectricCar e Battery em um modulo separado. Criaremos um novo
+modulo chamado electric_car.py ? substituindo o arquivo electric_car.py
+que criamos antes ? e copiaremos apenas as classes Battery e ElectricCar
+para esse arquivo: electric_car.py \"\"\"Um conjunto de classes que pode
+ser usado para representar carros eletricos.\"\"\"
+u from car import Car
+class Battery(): --trecho omitido--
+222
+class ElectricCar(Car): --trecho omitido--
+A classe ElectricCar precisa ter acesso a sua classe-pai Car, portanto
+importamos Car diretamente para o modulo em u. Se esquecermos de
+colocar essa linha, Python gerara um erro quando tentarmos criar uma
+instancia de ElectricCar. Tambem precisamos atualizar o modulo Car
+para que ele contenha apenas a classe Car: car.py \"\"\"Uma classe que
+pode ser usada para representar um carro.\"\"\"
+class Car(): --trecho omitido--
+Agora podemos fazer a importacao de cada modulo separadamente e
+criar o tipo de carro que for necessario: my_cars.py u from car import
+Car from electric_car import ElectricCar
+my_beetle = Car(\'volkswagen\', \'beetle\', 2016)
+print(my_beetle.get_descriptive_name())
+my_tesla = ElectricCar(\'tesla\', \'roadster\', 2016)
+print(my_tesla.get_descriptive_name()) Em u importamos Car de seu modulo
+e ElectricCar de seu modulo. Em seguida, criamos um carro comum e um
+carro eletrico. Os dois tipos de carro sao criados corretamente: 2016
+Volkswagen Beetle 2016 Tesla Roadster
+Definindo o seu proprio fluxo de trabalho
+Como podemos ver, Python oferece muitas opcoes para estruturar o
+codigo em um projeto de grande porte. E importante conhecer todas
+essas possibilidades para que voce possa determinar a melhor maneira
+de organizar seus projetos, assim como entender o projeto de outras
+pessoas.
+Quando estiver comecando a programar, mantenha a estrutura de seu
+codigo simples. Procure fazer tudo em um so arquivo e transfira suas
+classes para modulos separados depois que tudo estiver funcionando. Se
+gostar do modo como os modulos e os arquivos interagem, experimente
+armazenar suas classes em modulos quando iniciar um projeto.
+Encontre uma abordagem que permita escrever um codigo que
+funcione, e comece a partir dai.
+FACA VOCE MESMO
+9.10 ? Importando Restaurant: Usando sua classe Restaurant mais recente,
+armazene-a em um modulo. Crie um arquivo separado que importe Restaurant.
+Crie uma instancia de Restaurant e chame um de seus metodos para mostrar
+223
+que a instrucao import funciona de forma apropriada.
+9.11 ? Importando Admin: Comece com seu programa do Exercicio 9.8 (pagina
+241). Armazene as classes User, Privileges e Admin em um modulo. Crie um
+arquivo separado e uma instancia de Admin e chame show_privileges() para
+mostrar que tudo esta funcionando de forma apropriada.
+9.12 ? Varios modulos: Armazene a classe User em um modulo e as classes
+Privileges e Admin em um modulo separado. Em outro arquivo, crie uma
+instancia de Admin e chame show_privileges() para mostrar que tudo continua
+funcionando de forma apropriada.
+Biblioteca-padrao de Python
+A biblioteca-padrao de Python e um conjunto de modulos incluido em
+todas as instalacoes de Python. Agora que temos uma compreensao
+basica de como as classes funcionam, podemos comecar a usar modulos
+como esses, escritos por outros programadores. Podemos usar qualquer
+funcao ou classe da biblioteca-padrao incluindo uma instrucao import
+simples no inicio do arquivo. Vamos analisar a classe OrderedDict do
+modulo collections.
+Os dicionarios permitem associar informacoes, mas eles nao mantem
+um controle da ordem em que os pares chave-valor sao acrescentados.
+Se voce estiver criando um dicionario e quiser manter o controle da
+ordem em que os pares chave-valor sao adicionados, a classe OrderedDict
+do modulo collections podera ser usada. Instancias da classe OrderedDict
+se comportam quase do mesmo modo que os dicionarios, exceto que
+mantem o controle da ordem em que os pares chave-valor sao
+adicionados.
+Vamos retomar o exemplo favorite_languages.py do Capitulo 6. Dessa
+vez, vamos manter o controle da ordem em que as pessoas responderam
+a enquete: favorite_languages.py u from collections import OrderedDict
+v favorite_languages = OrderedDict()
+w favorite_languages[\'jen\'] = \'python\'
+favorite_languages[\'sarah\'] = \'c\'
+favorite_languages[\'edward\'] = \'ruby\'
+favorite_languages[\'phil\'] = \'python\'
+x for name, language in favorite_languages.items(): print(name.title() +
+\"\'s favorite language is \" +
+224
+language.title() + \".\") Comecamos importando a classe OrderedDict do
+modulo collections em u. Em v criamos uma instancia da classe
+OrderedDict e a armazenamos em favorite_languages. Observe que nao ha
+chaves; a chamada a OrderedDict() cria um dicionario ordenado vazio para
+nos e o armazena em favorite_languages. Entao adicionamos cada nome e
+linguagem em favorite_languages, um de cada vez w. Agora, quando
+percorremos favorite_languages com um laco em x, sabemos que sempre
+teremos as respostas na ordem em que os itens foram adicionados: Jen\'s
+favorite language is Python.
+Sarah\'s favorite language is C.
+Edward\'s favorite language is Ruby.
+Phil\'s favorite language is Python.
+E uma otima classe para conhecer, pois combina a principal vantagem
+das listas (preservar a ordem original) com o principal recurso dos
+dicionarios (associar informacoes). Quando comecar a modelar
+situacoes do mundo real que sejam de seu interesse, e provavel que voce
+va se deparar com uma situacao em que um dicionario ordenado seja
+exatamente o que voce precisa. A medida que conhecer melhor a
+biblioteca-padrao, voce passara a ter familiaridade com varios modulos
+como esse, que ajudam a tratar situacoes comuns.
+NOTA Voce tambem pode fazer download de modulos de fontes externas.
+Veremos varios desses exemplos na Parte II, quando precisaremos de
+modulos externos para concluir cada projeto.
+FACA VOCE MESMO
+9.13 ? Reescrevendo o programa com OrderedDict: Comece com o Exercicio
+6.4 (pagina 155), em que usamos um dicionario-padrao para representar um
+glossario. Reescreva o programa usando a classe OrderedDict e certifique-se de
+que a ordem da saida coincida com a ordem em que os pares chave-valor
+foram adicionados ao dicionario.
+9.14 ? Dados: O modulo random contem funcoes que geram numeros aleatorios
+de varias maneiras. A funcao randint() devolve um inteiro no intervalo
+especificado por voce. O codigo a seguir devolve um numero entre 1 e 6: from
+random import randint x = randint(1, 6)
+Crie uma classe Die com um atributo chamado sides, cujo valor default e 6.
+Escreva um metodo chamado roll_die() que exiba um numero aleatorio entre
+1 e o numero de lados do dado. Crie um dado de seis dados e lance-o dez
+vezes.
+Crie um dado de dez lados e outro de vinte lados. Lance cada dado dez
+vezes.
+225
+9.15 ? Modulo Python da semana: Um excelente recurso para explorar a
+biblioteca-padrao de Python e um site chamado Python Module of the Week
+(Modulo Python da semana). Acesse http://pymotw.com/ e observe a tabela de
+conteudo. Encontre um modulo que pareca ser interessante e leia a sua
+descricao ou explore a documentacao dos modulos collections e random.
+Estilizando classes
+Vale a pena esclarecer algumas questoes ligadas a estilizacao de classes,
+em especial quando seus programas se tornarem mais complexos.
+Os nomes das classes devem ser escritos com CamelCaps. Para isso,
+cada palavra do nome deve ter a primeira letra maiuscula, e voce nao
+deve usar underscores. Nomes de instancias e de modulos devem ser
+escritos com letras minusculas e underscores entre as palavras.
+Toda classe deve ter uma docstring logo depois de sua definicao. A
+docstring deve conter uma breve descricao do que a classe faz, e as
+mesmas convencoes de formatacao devem ser usadas para escrever
+docstrings em funcoes. Cada modulo tambem deve ter uma docstring
+que descreva para que servem as classes de um modulo.
+Podemos usar linhas em branco para organizar o codigo, mas voce
+nao deve utiliza-las de modo excessivo. Em uma classe, podemos usar
+uma linha em branco entre os metodos; em um modulo, podemos usar
+duas linhas em branco para separar as classes.
+Se houver necessidade de importar um modulo da biblioteca-padrao e
+um modulo escrito por voce, coloque a instrucao de importacao do
+modulo da biblioteca-padrao antes. Entao acrescente uma linha em
+branco e a instrucao de importacao para o modulo que voce escreveu.
+Em programas com varias instrucoes de importacao, essa convencao
+facilita ver a origem dos diferentes modulos utilizados pelo programa.
+Resumo
+Neste capitulo, vimos como escrever nossas proprias classes.
+Aprendemos a armazenar informacoes em uma classe usando atributos e
+a escrever metodos que conferem o comportamento necessario as suas
+classes. Vimos como escrever metodos _init_() que criam instancias
+de suas classes com os atributos especificos que desejamos ter.
+Aprendemos a modificar os atributos de uma instancia diretamente e por
+226
+meio de metodos. Vimos que a heranca pode simplificar a criacao de
+classes relacionadas umas as outras e aprendemos a usar instancias de
+uma classe como atributos de outra para deixa-las mais simples.
+Aprendemos a armazenar classes em modulos e a importar as classes
+necessarias nos arquivos em que elas serao usadas para deixar seus
+projetos organizados. Comecamos a conhecer a biblioteca-padrao de
+Python e vimos um exemplo com a classe OrderedDict do modulo
+collections. Por fim, vimos como estilizar classes usando as convencoes
+de Python.
+No Capitulo 10, aprenderemos a trabalhar com arquivos para que
+possamos salvar o trabalho feito por voce e pelos usuarios de seu
+programa. Tambem conheceremos as excecoes: uma classe Python
+especial, concebida para ajudar voce a responder a erros quando esses
+surgirem.
